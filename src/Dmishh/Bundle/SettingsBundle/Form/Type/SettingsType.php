@@ -32,6 +32,18 @@ class SettingsType extends AbstractType
     }
 
     /**
+     * 
+     * @param array $options
+     * @param string $name
+     * @param array $configuration
+     * @return array
+     */
+    protected function getFieldOptions(array $options, $name, array $configuration)
+    {
+        return $options;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -69,6 +81,7 @@ class SettingsType extends AbstractType
                         array_combine($fieldOptions['choices'], $fieldOptions['choices'])
                     );
                 }
+                $fieldOptions = $this->getFieldOptions($fieldOptions, $name, $configuration);
                 $builder->add($name, $fieldType, $fieldOptions);
             }
         }
